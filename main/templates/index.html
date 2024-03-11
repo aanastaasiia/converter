@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Вход</title>
+        <!-- подключаем бутстрап -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+      <div class='container'>
+        <div class='row'>
+          <div class="col-md-12">
+            <h2>Конвертатор валют</h2>
+            <form action='sendform' method='post'>
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Введите количество валюты</label>
+                <input type="number" name="amount" class="form-control" required/>
+              </div>
+              <div class='form-group'>
+                <label>Выберите валюту, из которой нужно перевести</label>
+                <div>
+                  <select name='value1'>
+                    {% for i in conversion_rates %}
+                    <option>{{i}}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+              </div>
+              <div class='form-group'>
+                <label>Выберите валюту, в которую нужно перевести</label>
+                <div>
+                  <select name='value2'>
+                    {% for i in conversion_rates %}
+                    <option>{{i}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="submit" name="submit" class="btn btn-primary" value="Конвертировать">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
